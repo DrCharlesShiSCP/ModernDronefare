@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class DroneController : MonoBehaviour
 {
     public float maxSpeed = 10f;
@@ -13,6 +13,13 @@ public class DroneController : MonoBehaviour
     private float shakeTimer;
     private float currentSpeed = 0f;
     private float accelerationRate;
+
+    public GameObject projectilePrefab; // The prefab to instantiate
+    public Transform launchPosition; // The position to instantiate the prefab
+    public float launchForce = 500f; // The force applied to the instantiated prefab
+    public float spawnCooldown = 2f; // Cooldown time between spawns
+    private float nextSpawnTime = 0f; // Time when the next spawn is allowed
+    public Image cooldownProgressBar;
 
     void Start()
     {
@@ -28,8 +35,11 @@ public class DroneController : MonoBehaviour
 
     void Update()
     {
-        // Example of calling methods based on external conditions
-        // These methods should be called from another script or input handler
+        UpdateCooldownProgressBar();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LaunchProjectile();
+        }
     }
 
     // Method to accelerate and move the drone forward
@@ -125,6 +135,43 @@ public class DroneController : MonoBehaviour
         {
             // Reset camera position when shake is finished
             cameraTransform.localPosition = originalCameraPosition;
+        }
+    }
+
+    // New method to instantiate and launch the prefab with a cooldown
+    public void LaunchProjectile()
+    {
+        // Check if the cooldown period has passed
+        if (Time.time >= nextSpawnTime)
+        {
+            if (projectilePrefab != null && launchPosition != null)
+            {
+                // Instantiate the prefab at the launch position
+                GameObject projectile = Instantiate(projectilePrefab, launchPosition.position, Quaternion.identity);
+
+                // Add Rigidbody and apply force to launch it
+                Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                if (rb == null)
+                {
+                    rb = projectile.AddComponent<Rigidbody>();
+                }
+
+                // Apply force towards the negative Y-axis
+                rb.AddForce(Vector3.down * launchForce, ForceMode.Impulse);
+
+                // Set the next spawn time
+                nextSpawnTime = Time.time + spawnCooldown;
+            }
+        }
+    }
+    private void UpdateCooldownProgressBar()
+    {
+        if (cooldownProgressBar != null)
+        {
+            float cooldownRemaining = nextSpawnTime - Time.time;
+            float progress = Mathf.Clamp01(1 - (cooldownRemaining / spawnCooldown));
+
+            cooldownProgressBar.fillAmount = progress;
         }
     }
 }
