@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DemoScene/Demo1.unity
     guid: 915e0fd582fd17144a3985fda8630429
+  - enabled: 1
+    path: Assets/DemoScene/WinScene.unity
+    guid: 3e1a382bb1b4f6347a3b0c28cc2a5c7f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
