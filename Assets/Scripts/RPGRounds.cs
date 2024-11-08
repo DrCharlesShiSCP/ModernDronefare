@@ -7,6 +7,7 @@ public class RPGRounds : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.LogWarning("hitGround");
         // Spawn the collision effect at the point of impact
         if (collisionEffect != null)
         {
