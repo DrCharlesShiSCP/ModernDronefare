@@ -47,7 +47,7 @@ public class DroneController : MonoBehaviour
     {
         Accelerate();
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        //TriggerCameraShake();
     }
 
     // Method to accelerate and move the drone backward
@@ -55,7 +55,7 @@ public class DroneController : MonoBehaviour
     {
         Accelerate();
         transform.Translate(Vector3.back * currentSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        //TriggerCameraShake();
     }
 
     // Method to accelerate and move the drone left
@@ -63,7 +63,8 @@ public class DroneController : MonoBehaviour
     {
         Accelerate();
         transform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        RotateLeft();
+        //TriggerCameraShake();
     }
 
     // Method to accelerate and move the drone right
@@ -71,7 +72,8 @@ public class DroneController : MonoBehaviour
     {
         Accelerate();
         transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        RotateRight();
+        //TriggerCameraShake();
     }
 
     // Method to accelerate and move the drone upward
@@ -79,7 +81,7 @@ public class DroneController : MonoBehaviour
     {
         Accelerate();
         transform.Translate(Vector3.up * currentSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        //TriggerCameraShake();
     }
 
     // Method to accelerate and move the drone downward
@@ -87,21 +89,21 @@ public class DroneController : MonoBehaviour
     {
         Accelerate();
         transform.Translate(Vector3.down * currentSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        //TriggerCameraShake();
     }
 
     // Method to rotate the drone left
     public void RotateLeft()
     {
         transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        //TriggerCameraShake();
     }
 
     // Method to rotate the drone right
     public void RotateRight()
     {
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-        TriggerCameraShake();
+        //TriggerCameraShake();
     }
 
     // Method to handle acceleration
