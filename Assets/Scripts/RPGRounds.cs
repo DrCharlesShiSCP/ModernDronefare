@@ -3,7 +3,9 @@ using UnityEngine;
 public class RPGRounds : MonoBehaviour
 {
     public GameObject collisionEffect; // The effect to spawn upon collision
-    public float destroyDelay = 0f; // Delay before destroying the projectile
+    public float destroyDelay = 2f; // Delay before destroying the projectile
+    public AudioClip bombSound;
+    public AudioSource bombsoundSource;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -13,6 +15,7 @@ public class RPGRounds : MonoBehaviour
         {
             Instantiate(collisionEffect, collision.contacts[0].point, Quaternion.identity);
         }
+        bombsoundSource.PlayOneShot(bombSound);
 
         // Destroy the projectile after the specified delay
         Destroy(gameObject, destroyDelay);

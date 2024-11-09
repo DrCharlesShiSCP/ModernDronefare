@@ -15579,6 +15579,15 @@ MonoBehaviour:
   explosion1: {fileID: 343024927469721183}
   explosion2: {fileID: 7413063701717386576}
   explosionSnd: {fileID: 1402539047684987867}
+  minForce: 2
+  maxForce: 10
+  affectChildren: 1
+  forceMode: 1
+  minVerticalAngle: -45
+  maxVerticalAngle: 45
+  restrictHorizontalAngle: 0
+  minHorizontalAngle: 0
+  maxHorizontalAngle: 360
 --- !u!54 &674526801365543705
 Rigidbody:
   m_ObjectHideFlags: 0

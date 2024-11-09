@@ -27,6 +27,8 @@ public class DroneCollision : MonoBehaviour
     private bool CollidedAlreday = false;
     private Rigidbody rb;
 
+    public AudioClip metalPipe;
+    public AudioSource pipeSource;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -114,7 +116,7 @@ public class DroneCollision : MonoBehaviour
         if (countdownText != null)
         {
             int seconds = Mathf.CeilToInt(currentTime);
-            countdownText.text = "Destruction Incoming in " + seconds.ToString();
+            countdownText.text = "THEY WILL FIND YOU IN " + seconds.ToString();
         }
     }
 
@@ -143,7 +145,7 @@ public class DroneCollision : MonoBehaviour
 
             rb.AddForce(randomDirection * explosionForce, ForceMode.Impulse);
         }
-
+        pipeSource.PlayOneShot(metalPipe);
         isCountingDown = false;
         Invoke("ActivateResetButton", 3f);
     }
